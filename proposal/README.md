@@ -54,17 +54,17 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 ### Mockups
 
 #### Homepage
-[homepage]('./proposal/Home.jpg')
+![homepage](Home.jpg)
 
 #### Closet feature
-[closet_display_edit]('./proposal/Closet_display_edit.jpg')
-[closet_add]('./proposal/Closet_newitem.jpg')
+![closet_display_edit](/proposal/Closet_display_edit.jpg)
+![closet_add](Closet_newitem.jpg)
 
 #### Laundry basket
-[laundry_basket]('./proposal/Laundry.jpg')
+![laundry_basket](Laundry.jpg)
 
 #### Inspiration page
-[inspiration]('./proposal/Inspiration.jpg')
+![inspiration](Inspiration.jpg)
 
 ### Data
 
