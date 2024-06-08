@@ -2,6 +2,9 @@
 import {BrowserRouter as Router, Routes, Route, BrowserRouter} from 'react-router-dom'
 import './App.scss'
 import Home from './pages/Home/Home'
+import Closet from './pages/Closet/Closet'
+import Edit from './pages/Edit/Edit'
+import Add from './pages/Add/Add'
 
 function App() {
 
@@ -12,10 +15,10 @@ function App() {
     <Route path="/closet" element={ <Closet/>}/>
     <Route path="/:cloth_id" element={ <Edit/>}/>
     <Route path="/add" element={ <Add/>}/>
-    <Route path="/tops" element={ <Top/>}/>
-    <Route path="/bottoms" element={ <Bottom/>}/>
+    {/* <Route path="/Tops" element={ <Top/>}/>
+    <Route path="/Bottoms" element={ <Bottom/>}/>
     <Route path="/laundry" element={ <Laundry/>}/>
-    <Route path="/inspiration" element={ <Inspiration/>}/>
+    <Route path="/inspiration" element={ <Inspiration/>}/> */}
   </Routes>
   </BrowserRouter>
   )

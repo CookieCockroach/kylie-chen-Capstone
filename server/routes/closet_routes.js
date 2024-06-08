@@ -12,6 +12,17 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/:cloth_id', async (req, res) => {
+    const id = req.params.cloth_id
+    try {
+        const data = await knex('clothes').where({ id: id })
+        res.status(200).json(data)
+    }
+    catch (err) {
+        res.status(400).send(`Error retrieving Closet: ${err}`)
+    }
+})
+
 router.put('/:cloth_id', async (req, res) => {
     const id = req.params.cloth_id
     try {
@@ -36,7 +47,7 @@ router.delete('/:cloth_id', async (req, res) => {
 
 router.get('/tops', async (req, res) => {
     try {
-        const data = await knex('clothes').where({ type: 'top' })
+        const data = await knex('clothes').where({ type: 'top', dirty: false })
         res.status(200).json(data)
     }
     catch (err) {
@@ -46,7 +57,7 @@ router.get('/tops', async (req, res) => {
 
 router.get('/bottoms', async (req, res) => {
     try {
-        const data = await knex('clothes').where({ type: 'bottom' })
+        const data = await knex('clothes').where({ type: 'bottom', dirty: false })
         res.status(200).json(data)
     }
     catch (err) {
@@ -81,10 +92,12 @@ router.put('/laundry', async (req, res) => {
 router.put('/laundry/:cloth_id', async (req, res) => {
     const id = req.params.cloth_id
     try {
-        const data = await knex('clothes').where({ id: id }).update({dirty: req.body})
+        const data = await knex('clothes').where({ id: id }).update({ dirty: req.body })
         res.status(200).json(data)
     }
     catch (err) {
         res.status(400).send(`Error retrieving Laundry Basket: ${err}`)
     }
 })
+
+module.exports = router

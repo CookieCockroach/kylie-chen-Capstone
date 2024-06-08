@@ -6,12 +6,12 @@ export default function Home() {
         <>
             <h1>Welcome Back!</h1>
             <h2>I want to...</h2>
-            <Link to="">
+            <Link to="/closet">
                 <div className="closet">
                     Check My Closet
                 </div>
             </Link>
-            <Link to="">
+            <Link to="/inspiration">
                 <div className="inspiration">
                     Get Outfit Ideas
                 </div>

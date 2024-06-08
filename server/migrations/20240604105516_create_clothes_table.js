@@ -8,7 +8,7 @@ exports.up = function (knex) {
             table.increments("cloth_id").primary();
             table.enum("color", ["Red", "Blue", "Green", "Yellow", "Black", "White"]).notNullable();
             table.enum("category", ["Shirt", "Pants", "Skirt", "Shorts", "T-shirt", "Longsleeve"]).notNullable();
-            table.enum("type", ["top", "bottom"]).notNullable();
+            table.enum("type", ["Top", "Bottom"]).notNullable();
             table.boolean("dirty").notNullable();
             table
                 .timestamp("updated_at")
