@@ -19,33 +19,33 @@ export default function Edit() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!type || !category || !color) {
-            if (!type) {
-                typeRef.current.classList.add("form_select--error");
+        const newItem = {
+            type: (type ? type : typeRef.current.value),
+            category: (category ? category : categoryRef.current.value),
+            color: (color ? color : colorRef.current.value),
+            dirty: (dirty ? dirty : false),
+        };
+        try {
+            const response = await axios.put(`${import.meta.env.VITE_BASEURL}/closet/${params.cloth_id}`, newItem)
+            if (response.status === 200) {
+                navigate(`/${typeRef.current.value}s`);
             }
-            if (!category) {
-                categoryRef.current.classList.add("form_select--error");
-            }
-            if (!color) {
-                colorRef.current.classList.add("form_select--error");
-            }
-        } else {
-            const newItem = {
-                type: type,
-                category: category,
-                color: color,
-                dirty: dirty
-            };
-            try {
-                const response = await axios.put(`${import.meta.env.VITE_BASEURL}/closet/${params.cloth_id}`, newItem)
-                if (response.status === 200) {
-                    navigate(`/${type}s`);
-                }
-            }
-            catch (err) {
-                console.log(err);
-            };
         }
+        catch (err) {
+            console.log(err);
+        };
+    };
+
+    const handleDelete = async (e) => {       
+        try {
+            const response = await axios.delete(`${import.meta.env.VITE_BASEURL}/closet/${params.cloth_id}`)
+            if (response.status === 204) {
+                navigate(`/${typeRef.current.value}s`);
+            }
+        }
+        catch (err) {
+            console.log(err);
+        };
     };
 
     useEffect(() => {
@@ -76,7 +76,7 @@ export default function Edit() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form_container1">
                     <div className="form_container2">
-                        <div className="form_icon">
+                        <div className="form_icon" style={{ backgroundColor: color }}>
                             <img className="form_cloth" alt="cloth_icon" src={`${import.meta.env.VITE_BASEURL}/${cloth.icon}`}></img>
                         </div>
                         <div className="form_details">
@@ -97,13 +97,14 @@ export default function Edit() {
                                 <option>Blue</option>
                                 <option>Green</option>
                                 <option>Yellow</option>
-                                <option>Black</option>
+                                <option>Grey</option>
                                 <option>White</option>
                             </select>
                             <label className="form_label">Type</label>
                             <select className="form_select"
                                 name="type"
                                 id="type"
+                                ref={typeRef}
                                 value={cloth.type}
                                 onChange={(e) => {
                                     setType(e.target.value);
@@ -118,6 +119,7 @@ export default function Edit() {
                             <select className="form_select"
                                 name="category"
                                 id="category"
+                                ref={categoryRef}
                                 value={cloth.category}
                                 onChange={(e) => {
                                     setCategory(e.target.value);
@@ -145,11 +147,9 @@ export default function Edit() {
                     </div>
                 </div>
                 <div className="form_container3">
-                    <button className="form_cancel"
-                    type="button"
-                        onClick={() => {
-                            navigate(`/${cloth.type}s`);
-                        }}>Cancel</button>
+                    <button className="form_delete"
+                        type="button"
+                        onClick={handleDelete}>Delete</button>
                     <button className="form_save" type="submit">Save</button>
                 </div>
             </form>

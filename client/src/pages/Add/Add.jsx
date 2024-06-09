@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Add.scss";
 import { useRef, useState } from "react";
 import axios from "axios";
@@ -10,6 +10,8 @@ export default function Add() {
     const [type, setType] = useState("");
     const [category, setCategory] = useState("");
     const [color, setColor] = useState("");
+
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,6 +27,7 @@ export default function Add() {
             }
         } else {
             const newItem = {
+                icon: `${category}.png`,
                 type: type,
                 category: category,
                 color: color,
@@ -53,9 +56,9 @@ export default function Add() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form_container1">
                     <div className="form_container2">
-                        <div className="form_icon">
+                        <div className="form_icon" style={{backgroundColor: color}}>
                             <img className="form_cloth" alt="cloth_icon"
-                                src={category?
+                                src={category ?
                                     `${import.meta.env.VITE_BASEURL}/${category}.png`
                                     : `${import.meta.env.VITE_BASEURL}/question.svg`}></img>
                         </div>
@@ -78,11 +81,12 @@ export default function Add() {
                                 <option>Blue</option>
                                 <option>Green</option>
                                 <option>Yellow</option>
-                                <option>Black</option>
+                                <option>Grey</option>
                                 <option>White</option>
                             </select>
                             <label className="form_label">Type</label>
                             <select className="form_select"
+                                ref={typeRef}
                                 name="type"
                                 id="type"
                                 value={type}
@@ -94,10 +98,11 @@ export default function Add() {
                                 }} >
                                 <option value=""></option>
                                 <option>Top</option>
-                                <option>Tottom</option>
+                                <option>Bottom</option>
                             </select>
                             <label className="form_label">Category</label>
                             <select className="form_select"
+                                ref={categoryRef}
                                 name="category"
                                 id="category"
                                 value={category}
@@ -108,12 +113,20 @@ export default function Add() {
                                     }
                                 }}>
                                 <option value=""></option>
-                                <option>Shirt</option>
-                                <option>Pants</option>
-                                <option>Skirt</option>
-                                <option>Shorts</option>
-                                <option>T-shirt</option>
-                                <option>Longsleeve</option>
+                                {type === 'Top' && (
+                                    <>
+                                        <option>T-shirt</option>
+                                        <option>Longsleeve</option>
+                                        <option>Shirt</option>
+                                    </>
+                                )}
+                                {type === 'Bottom' && (
+                                    <>
+                                        <option>Shorts</option>
+                                        <option>Pants</option>
+                                        <option>Skirt</option>
+                                    </>
+                                )}
                             </select>
                         </div>
                     </div>
@@ -121,7 +134,7 @@ export default function Add() {
                 <div className="form_container3">
                     <button className="form_save">Save</button>
                 </div>
-            </form>
+            </form >
         </>
     );
 };

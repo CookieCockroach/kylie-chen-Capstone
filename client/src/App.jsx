@@ -7,6 +7,7 @@ import Edit from './pages/Edit/Edit'
 import Add from './pages/Add/Add'
 import Top from './pages/Top/Top'
 import Bottom from './pages/Bottom/Bottom'
+import Laundry from './pages/Laundry/Laundry'
 
 function App() {
 
@@ -19,8 +20,8 @@ function App() {
     <Route path="/add" element={ <Add/>}/>
     <Route path="/Tops" element={ <Top/>}/>
     <Route path="/Bottoms" element={ <Bottom/>}/>
-    {/* <Route path="/laundry" element={ <Laundry/>}/>
-    <Route path="/inspiration" element={ <Inspiration/>}/> */}
+    <Route path="/laundry" element={ <Laundry/>}/>
+    {/* <Route path="/inspiration" element={ <Inspiration/>}/> */}
   </Routes>
   </BrowserRouter>
   )

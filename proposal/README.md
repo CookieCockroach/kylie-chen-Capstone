@@ -40,13 +40,13 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 
 ### APIs
 
-- is there an API to get outfit-specific photos? (still searching)
+- [API to get outfit-specific photos based on key words](https://unsplash.com/)
 
 ### Sitemap
-
 - Homepage
 - Closet page
   - Add clothes
+  - Edit Clothes
   - Existing closets
   - Laundry basket
 - Inspiration page
@@ -68,8 +68,7 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 
 ### Data
 
-- Closet: id, description{color, style}, category, image/icon
-- Laundry basket: id, description{color, style}, category, image/icon, "dirty" tag
+- Closet: id, description{color, style}, category, image/icon, "dirty" tag
 
 ### Endpoints
 - GET /closet
@@ -77,8 +76,8 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 - PUT /closet
 - DELETE /closet
 - GET /inspiration
-- POST /laundry
-- DELETE /laundry
+- GET /laundry
+- PUT /laundry
 
 ### Auth
 

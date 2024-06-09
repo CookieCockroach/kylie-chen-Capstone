@@ -34,7 +34,7 @@ module.exports = [
     {
         cloth_id: 5,
         icon: 'Longsleeve.png',
-        color: "Black",
+        color: "Grey",
         category: "Longsleeve",
         type: "Top",
         dirty: false,
