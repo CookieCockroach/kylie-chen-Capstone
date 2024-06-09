@@ -6,6 +6,7 @@ exports.up = function (knex) {
     return knex.schema
         .createTable("clothes", (table) => {
             table.increments("cloth_id").primary();
+            table.string("icon").notNullable();
             table.enum("color", ["Red", "Blue", "Green", "Yellow", "Black", "White"]).notNullable();
             table.enum("category", ["Shirt", "Pants", "Skirt", "Shorts", "T-shirt", "Longsleeve"]).notNullable();
             table.enum("type", ["Top", "Bottom"]).notNullable();

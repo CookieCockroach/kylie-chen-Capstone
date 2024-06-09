@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./Add.scss";
 import { useRef, useState } from "react";
 import axios from "axios";
-
 export default function Add() {
 
     const colorRef = useRef();
@@ -13,7 +12,6 @@ export default function Add() {
     const [color, setColor] = useState("");
 
     const handleSubmit = async (e) => {
-        //validate first if all fields are filled out, if not add the class name to the empty filed and prevent from submission
         e.preventDefault();
         if (!type || !category || !color) {
             if (!type) {
@@ -26,19 +24,17 @@ export default function Add() {
                 colorRef.current.classList.add("form_select--error");
             }
         } else {
-            //if all fields are filled out, submit the form
             const newItem = {
                 type: type,
                 category: category,
                 color: color,
                 dirty: false
             };
-            //make axios call to post new item to database, using async function and await
             try {
-                const response = await axios.post(`${import.meta.env.VITE_BASEURL}`, newItem)
-                    if (response.status === 200) {
-                        navigate("/closet");
-                    }
+                const response = await axios.post(`${import.meta.env.VITE_BASEURL}/closet`, newItem)
+                if (response.status === 200) {
+                    navigate("/closet");
+                }
             }
             catch (err) {
                 console.log(err);
@@ -50,7 +46,7 @@ export default function Add() {
         <>
             <header className="header">
                 <Link to="/closet">
-                    <img className="header_nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
+                    <img className="header_nav" alt='go_back_arrow' src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
                 </Link>
                 <h1>Add new item</h1>
             </header>
@@ -58,7 +54,10 @@ export default function Add() {
                 <div className="form_container1">
                     <div className="form_container2">
                         <div className="form_icon">
-                            <img alt="icon"></img>
+                            <img className="form_cloth" alt="cloth_icon"
+                                src={category?
+                                    `${import.meta.env.VITE_BASEURL}/${category}.png`
+                                    : `${import.meta.env.VITE_BASEURL}/question.svg`}></img>
                         </div>
                         <div className="form_details">
                             <label className="form_label">Color</label>
@@ -74,6 +73,7 @@ export default function Add() {
                                     }
                                 }}
                             >
+                                <option value=""></option>
                                 <option>Red</option>
                                 <option>Blue</option>
                                 <option>Green</option>
@@ -92,6 +92,7 @@ export default function Add() {
                                         typeRef.current.classList.remove("form_select--error");
                                     }
                                 }} >
+                                <option value=""></option>
                                 <option>Top</option>
                                 <option>Tottom</option>
                             </select>
@@ -106,6 +107,7 @@ export default function Add() {
                                         categoryRef.current.classList.remove("form_select--error");
                                     }
                                 }}>
+                                <option value=""></option>
                                 <option>Shirt</option>
                                 <option>Pants</option>
                                 <option>Skirt</option>

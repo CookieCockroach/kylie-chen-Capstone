@@ -1,13 +1,15 @@
 module.exports = [
     {
         cloth_id: 1,
+        icon: 'T-shirt.png',
         color: "White",
-        category:"T-shirt",
+        category: "T-shirt",
         type: "Top",
         dirty: false,
     },
     {
-        cloth_id: 2,
+        cloth_id: 2,                
+        icon: 'Shirt.png',
         color: "Red",
         category: "Shirt",
         type: "Top",
@@ -15,13 +17,15 @@ module.exports = [
     },
     {
         cloth_id: 3,
+        icon: 'Pants.png',
         color: "Green",
         category: "Pants",
         type: "Bottom",
         dirty: false,
     },
     {
-        cloth_id: 4,
+        cloth_id: 4,        
+        icon: 'Shorts.png',
         color: "Yellow",
         category: "Shorts",
         type: "Bottom",
@@ -29,6 +33,7 @@ module.exports = [
     },
     {
         cloth_id: 5,
+        icon: 'Longsleeve.png',
         color: "Black",
         category: "Longsleeve",
         type: "Top",
@@ -36,6 +41,7 @@ module.exports = [
     },
     {
         cloth_id: 6,
+        icon: 'Skirt.png',
         color: "Blue",
         category: "Skirt",
         type: "Bottom",

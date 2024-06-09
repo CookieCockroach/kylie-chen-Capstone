@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Edit() {
     const navigate = useNavigate();
     const params = useParams();
-    
+
     const colorRef = useRef();
     const categoryRef = useRef();
     const typeRef = useRef();
@@ -15,6 +15,7 @@ export default function Edit() {
     const [category, setCategory] = useState("");
     const [color, setColor] = useState("");
     const [dirty, setDirty] = useState("");
+    const [cloth, setCloth] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +37,7 @@ export default function Edit() {
                 dirty: dirty
             };
             try {
-                const response = await axios.put(`${import.meta.env.VITE_BASEURL}/${params.cloth_id}`, newItem)
+                const response = await axios.put(`${import.meta.env.VITE_BASEURL}/closet/${params.cloth_id}`, newItem)
                 if (response.status === 200) {
                     navigate(`/${type}s`);
                 }
@@ -50,26 +51,25 @@ export default function Edit() {
     useEffect(() => {
         const fetchCloth = async (id) => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/${id}`);
-                if (response.status === 200) {
-                    setType(response.data.type);
-                    setCategory(response.data.category);
-                    setColor(response.data.color);
-                    setDirty(response.data.dirty);
-                }
-           }
-           catch (err) {
-               console.log(err);
-           }
+                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/closet/${id}`);
+                setCloth(response.data);
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
         fetchCloth(params.cloth_id);
     }, [params.cloth_id]);
+
+    if (!cloth) {
+        return <p>Loading...🫠</p>
+    }
 
     return (
         <>
             <header className="header">
                 <Link to="/closet">
-                    <img className="header_nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
+                    <img className="header_nav" alt='go_back_arrow' src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
                 </Link>
                 <h1>Edit item</h1>
             </header>
@@ -77,7 +77,7 @@ export default function Edit() {
                 <div className="form_container1">
                     <div className="form_container2">
                         <div className="form_icon">
-                            <img alt="icon"></img>
+                            <img className="form_cloth" alt="cloth_icon" src={`${import.meta.env.VITE_BASEURL}/${cloth.icon}`}></img>
                         </div>
                         <div className="form_details">
                             <label className="form_label">Color</label>
@@ -85,7 +85,7 @@ export default function Edit() {
                                 ref={colorRef}
                                 name="color"
                                 id="color"
-                                value={color}
+                                value={cloth.color}
                                 onChange={(e) => {
                                     setColor(e.target.value);
                                     if (color) {
@@ -104,7 +104,7 @@ export default function Edit() {
                             <select className="form_select"
                                 name="type"
                                 id="type"
-                                value={type}
+                                value={cloth.type}
                                 onChange={(e) => {
                                     setType(e.target.value);
                                     if (type) {
@@ -118,7 +118,7 @@ export default function Edit() {
                             <select className="form_select"
                                 name="category"
                                 id="category"
-                                value={category}
+                                value={cloth.category}
                                 onChange={(e) => {
                                     setCategory(e.target.value);
                                     if (category) {
@@ -134,22 +134,23 @@ export default function Edit() {
                             </select>
                             <label className="form_label">Dirty?</label>
                             <input className="form_select"
-                            name="dirty"
-                            id="dirty"
-                            type="checkbox"
-                            onChange={(e) => {
-                                setDirty(e.target.checked);
-                            }}>
+                                name="dirty"
+                                id="dirty"
+                                type="checkbox"
+                                onChange={(e) => {
+                                    setDirty(e.target.checked);
+                                }}>
                             </input>
                         </div>
                     </div>
                 </div>
                 <div className="form_container3">
                     <button className="form_cancel"
+                    type="button"
                         onClick={() => {
-                            navigate(`/${type}s`);
+                            navigate(`/${cloth.type}s`);
                         }}>Cancel</button>
-                    <button className="form_save">Save</button>
+                    <button className="form_save" type="submit">Save</button>
                 </div>
             </form>
         </>
