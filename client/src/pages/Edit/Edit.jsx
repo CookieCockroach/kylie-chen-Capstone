@@ -97,7 +97,7 @@ export default function Edit() {
                                 <option>Blue</option>
                                 <option>Green</option>
                                 <option>Yellow</option>
-                                <option>Grey</option>
+                                <option>Grey    </option>
                                 <option>White</option>
                             </select>
                             <label className="form_label">Type</label>

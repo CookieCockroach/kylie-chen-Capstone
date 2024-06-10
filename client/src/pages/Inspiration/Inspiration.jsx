@@ -1,27 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from 'pexels';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Inspiration = () => {
-    const [photos, setPhotos] = useState([]);
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
+    const [link, setLink] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasTried, setHasTried] = useState(false);
 
-    const client = createClient('XuFFBFXtZbsCh6tRm8WHH04vCbFYD9PwRscYLvUNMOAVcRKkA0kDh6gv');
+    useEffect(() => {
+        // Fetch new image only if hasTried is true and there's no current link (reset scenario)
+        if (hasTried && !link) {
+            getImage();
+        }
+    }, [hasTried, link]);
 
-    // useEffect(() => {
-    //     if (isButtonClicked) {
-    //         document.getElementById('fetchButton').classList.add('moved');
-    //     }
-    // }, [isButtonClicked]);
-
-    const fetchImage = async () => {
+    const getImage = async () => {
+        setIsLoading(true);
         try {
-            const query = 'OOTD';
-            const response = await client.photos.curated({ query, per_page: 1 });
-            setPhotos(response.photos);
-        } catch (error) {
+            const response1 = await axios.get(`${import.meta.env.VITE_BASEURL}/closet/tops`);
+            const length1 = response1.data.length;
+            const randomIndex1 = Math.floor(Math.random() * length1);
+            const newRandomTop = {
+                color: response1.data[randomIndex1].color,
+                category: response1.data[randomIndex1].category,
+            };
+
+            const response2 = await axios.get(`${import.meta.env.VITE_BASEURL}/closet/bottoms`);
+            const length2 = response2.data.length;
+            const randomIndex2 = Math.floor(Math.random() * length2);
+            const newRandomBottom = {
+                color: response2.data[randomIndex2].color,
+                category: response2.data[randomIndex2].category,
+            };
+
+            const query = `${newRandomTop.color} ${newRandomTop.category} ${newRandomBottom.color} ${newRandomBottom.category}`;
+            console.log(query)
+
+            const response3 = await axios.post(`${import.meta.env.VITE_BASEURL}/inspiration/api/proxy/image`, { prompt: query, aspect_ratio: '1:1' });
+            setLink(response3.data.data[0].asset_url)
+            setIsLoading(false)
+        }
+
+        catch (error) {
             console.error("Error fetching image:", error);
         }
+    };
+
+    
+    const handleClick = () => {
+        setHasTried(true);
+        getImage();
+    };
+
+    const handleRetryClick = () => {
+        setLink(null);
+        setHasTried(false);
     };
 
     return (
@@ -32,21 +65,23 @@ const Inspiration = () => {
                 </Link>
                 <h1>Inspiration</h1>
             </header>
-            <button
-                className={isButtonClicked ? 'moved' : 'initial'}
-                onClick={fetchImage}
+            {!link && !isLoading && (<button
+                className='body_button1'
+                onClick={handleClick}
             >
                 Magic mirror on the wall...
-            </button>
-            <div>
-                {photos.map((photo, index) => (
-                    <img
-                        key={index}
-                        src={photo.src.large} // Using 'large' size for better view, adjust as needed
-                        alt={`${photo.alt}`}
-                    />
-                ))}
-            </div>
+            </button>)}
+            {isLoading && (
+                <p>Generating your outfit inspiration...</p>
+            )}
+            {!isLoading && link && (
+                <>
+                    <img className='body_img' src={link} alt="Outfit_Image" />
+                    <button className='body_button2' onClick={handleRetryClick}>
+                        Try again!
+                    </button>
+                </>
+            )}
         </div>
     );
 };
