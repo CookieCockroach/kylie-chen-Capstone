@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("../../assets/images/background.png");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  padding: 1rem;
+
+  &__nav {
+    background-color: white;
+    cursor: pointer;
+  }
+
+  &__logo {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  &__laundry {
+    background-color: rgb(65, 88, 222);
+    color: white;
+    border-radius: 50%;
+    padding: 1rem;
+    font-weight: 500;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+
+  &__new{
+    background-color: pink;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    width: 15rem;
+    margin: 1rem;
+  }
+  
+  &__top,
+  &__bottom {
+    background-color: orange;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    width: 11rem;
+    margin: 1rem;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Inspiration.scss'
 
 const Inspiration = () => {
     const [link, setLink] = useState();
@@ -46,7 +47,7 @@ const Inspiration = () => {
         }
     };
 
-    
+
     const handleClick = () => {
         setHasTried(true);
         getImage();
@@ -58,31 +59,33 @@ const Inspiration = () => {
     };
 
     return (
-        <div>
-            <header className="header">
+        <>
+            <header className="header2">
                 <Link to="/">
-                    <img className="header_nav" alt='go_back_arrow' src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
+                    <img className="header2__nav" alt='go_back_arrow' src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
                 </Link>
-                <h1>Inspiration</h1>
+                <h1 className='header2__logo'>Inspiration</h1>
             </header>
-            {!link && !isLoading && (<button
-                className='body_button1'
-                onClick={handleClick}
-            >
-                Magic mirror on the wall...
-            </button>)}
-            {isLoading && (
-                <p>Generating your outfit inspiration...</p>
-            )}
-            {!isLoading && link && (
-                <>
-                    <img className='body_img' src={link} alt="Outfit_Image" />
-                    <button className='body_button2' onClick={handleRetryClick}>
-                        Try again!
-                    </button>
-                </>
-            )}
-        </div>
+            <div className='section'>
+                {!link && !isLoading && (<button
+                    className='section__button1'
+                    onClick={handleClick}
+                >
+                    Magic mirror on the wall...
+                </button>)}
+                {isLoading && (
+                    <p>Generating your outfit inspiration...</p>
+                )}
+                {!isLoading && link && (
+                    <>
+                        <img className='section__img' src={link} alt="Outfit_Image" />
+                        <button className='section__button2' onClick={handleRetryClick}>
+                            Try again!
+                        </button>
+                    </>
+                )}
+            </div>
+        </>
     );
 };
 

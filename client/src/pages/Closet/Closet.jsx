@@ -6,32 +6,34 @@ export default function Closet() {
         <>
             <header className="header">
                 <Link to="/">
-                    <img className="header_nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
+                    <img className="header__nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
                 </Link>
-                <div className="header_logo">
+                <h1 className="header__logo">
                     My Closet
-                </div>
+                </h1>
                 <Link to='/laundry'>
-                    <div className="header_laundry">
+                    <div className="header__laundry">
                         Laundry
                     </div>
                 </Link>
             </header>
-            <Link to="/add">
-                <div className="new">
-                    Bought new clothes?
-                </div>
-            </Link>
-            <Link to="/tops">
-                <div className="top">
-                    Top
-                </div>
-            </Link>
-            <Link to="/bottoms">
-                <div className="bottom">
-                    Bottom
-                </div>
-            </Link>
+            <div className="nav">
+                <Link to="/add">
+                    <div className="nav__new">
+                        Bought new clothes?
+                    </div>
+                </Link>
+                <Link to="/tops">
+                    <div className="nav__top">
+                        Top
+                    </div>
+                </Link>
+                <Link to="/bottoms">
+                    <div className="nav__bottom">
+                        Bottom
+                    </div>
+                </Link>
+            </div>
         </>
     )
 }

@@ -16,16 +16,17 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 
 ### Features
 - a database to store clothes details/descriptions ("my closet")
-  - a library to store clothes icons/images; or a ready to use API
-  - in terms of images, pre-define some clothes 'prototypes' and assign to items based on the category user chooses?
-  - find little icons of t-shirts, pants, dresses, etc. i need to control the amount of prototypes to bigger categories?
+  - a library to store clothes
+  - icons are used to represent different types of clothes
+  - a way to add new clothes
+  - a way to delete clothes
+  - a way to edit clothes
 - a way to get inspiration for what to wear
-  - find a fashion API to get outfit specific photos
-  - pull a pair of keywords from closet and get inspiration from the fashion API (randomized pair)
+  - pull a pair of existing items from closet (one from top and another from bottom), generate inspiration image for reference
+  - if not satisfied, there's a try again button
 - a laudry basket to show checked-out clothes
-  - a button attached to each item to check it out to laundry basket
-  - shopping-cart to collect & restore all laundry basket items 
-  - another seperate database to store laundry basket items?
+  - a checkbox attached to each item to check it out to laundry basket
+  - shopping-cart to display & restore all laundry basket items 
 
 ## Implementation
 
@@ -35,19 +36,24 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 - Node.js
 - Express
 - database/MySQL
-- any library/package to show clothes inventory?
-- any library/package to display inspiration cards?
+- axios
+- scss
+- CORS
+- Knex
+- dotenv
+- react-router-dom
 
 ### APIs
 
-- [API to get outfit-specific photos based on key words](https://unsplash.com/)
+- [API to generate outfit photos based on key words](https://limewire.com/)
 
 ### Sitemap
 - Homepage
 - Closet page
   - Add clothes
   - Edit Clothes
-  - Existing closets
+  - Tops
+  - Bottoms
   - Laundry basket
 - Inspiration page
 
@@ -68,20 +74,20 @@ Young students, mother with kids, busy-schedule workers, and anyone who wants to
 
 ### Data
 
-- Closet: id, description{color, style}, category, image/icon, "dirty" tag
+- Closet: id, color, type, category, icon link, "dirty" tag
 
 ### Endpoints
 - GET /closet
 - POST /closet
-- PUT /closet
-- DELETE /closet
 - GET /inspiration
 - GET /laundry
 - PUT /laundry
+- GET /closet/:id
+- PUT /closet/:id
 
 ### Auth
 
-Not required? it's just a personal assistant app
+Not required, it's intended to be a local app and the data is not sensitive nor confidential.
 
 ## Roadmap
 - Create client
@@ -92,21 +98,21 @@ Not required? it's just a personal assistant app
 
 - Create migrations
 
-- Gather 15 sample closet items
+- Generate a few sample closet items
 
 - Create seeds with sample closet item data
 
 - Deploy client and server projects so all commits will be reflected in production
 
 - feature: my closet
-  - create
+  - create the closet home, top and bottom pages
 
 - feature: laundry basket
-  - build datafile/database/table to hold all clothes tagged with "dirty"
+  - build endpoint to get all clothes tagged with "dirty"
   - create front-end interfact to display all 'checked-out' clothes, and a button to restore them to closet
 
 - feature: inspiration
-  - create Endpoint for API 
+  - hookup Endpoint for image API 
   - create front-end interfact to display inspiration image
 
 - Feature: Home page

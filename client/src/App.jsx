@@ -8,10 +8,10 @@ import Add from './pages/Add/Add'
 import Top from './pages/Top/Top'
 import Bottom from './pages/Bottom/Bottom'
 import Laundry from './pages/Laundry/Laundry'
-import Inspiration from './pages/Inspiration/Inspiration'
+import Inspiration from './pages/Inspiration/Inspiration' 
+import Footer from './components/Footer/Footer'
 
 function App() {
-
   return (
   <BrowserRouter>
   <Routes>
@@ -22,8 +22,9 @@ function App() {
     <Route path="/Tops" element={ <Top/>}/>
     <Route path="/Bottoms" element={ <Bottom/>}/>
     <Route path="/laundry" element={ <Laundry/>}/>
-    <Route path="/inspiration" element={ <Inspiration/>}/>
+    <Route path="/inspiration" element={ <Inspiration/>}/>  
   </Routes>
+  <Footer/>
   </BrowserRouter>
   )
 }

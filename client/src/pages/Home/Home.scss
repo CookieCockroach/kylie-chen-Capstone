@@ -1,0 +1,37 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/images/background.png");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+
+  &__welcome {
+    color: pink;
+    padding: 3rem;
+    background-color: white;
+    margin-bottom: 4rem;
+  }
+
+  &__nav {
+    color: yellowgreen;
+    padding: 1rem;
+    margin: 1rem;    
+    background-color: white;
+  }
+
+  &__closet,
+  &__inspiration {
+    background-color: orange;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    width: 11rem;
+    margin: 1rem;
+  }
+}

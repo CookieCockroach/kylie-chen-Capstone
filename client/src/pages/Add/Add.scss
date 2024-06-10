@@ -1,0 +1,71 @@
+.header2 {
+  display: flex;
+  align-items: center;
+  background-image: url("../../assets/images/background.png");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  padding: 1rem;
+
+  &__nav {
+    background-color: white;
+    cursor: pointer;
+  }
+
+  &__logo {
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+
+  &__cloth {
+    width: 5rem;
+    height: 5rem;
+  }
+  &__container1 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 2rem;
+  }
+
+  &__select--error{
+    border: 2px solid red;
+  }
+
+  &__container2 {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  &__save {
+    background-color: orange;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border: 2px solid white;
+
+    &:hover {
+      cursor: pointer;
+      border-color: black;
+    }
+  }
+}

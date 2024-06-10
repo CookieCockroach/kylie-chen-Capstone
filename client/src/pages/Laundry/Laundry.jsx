@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from 'axios'; 
 import Cloth from "../../components/Cloth/Cloth";
+import "./Laundry.scss";
 
 const Laundry = () => {
     const navigate = useNavigate()
@@ -32,18 +33,18 @@ const Laundry = () => {
 
     return (
         <>
-            <header className="header">
+            <header className="header2">
                 <Link to="/closet">
-                    <img className="header_nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
+                    <img className="header2__nav" src={`${import.meta.env.VITE_BASEURL}/arrow.svg`}></img>
                 </Link>
-                <h1>Luandry Basket</h1>
+                <h1 className="header2__logo">Luandry Basket</h1>
             </header>
-            <main className="main">
+            <main className="body">
                 {items.map((item) => (
                     <Cloth key={item.cloth_id} item={item}/>
                 ))}
             </main>
-            <button onClick={handleClick}>Laundry Day!</button>
+            <button className="clean" onClick={handleClick}>Laundry Day!</button>
         </>
     );
 };
