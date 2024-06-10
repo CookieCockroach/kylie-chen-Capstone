@@ -35,7 +35,6 @@ const Inspiration = () => {
             };
 
             const query = `${newRandomTop.color} ${newRandomTop.category} ${newRandomBottom.color} ${newRandomBottom.category}`;
-            console.log(query)
 
             const response3 = await axios.post(`${import.meta.env.VITE_BASEURL}/inspiration/api/proxy/image`, { prompt: query, aspect_ratio: '1:1' });
             setLink(response3.data.data[0].asset_url)
