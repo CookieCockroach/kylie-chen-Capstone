@@ -76,7 +76,7 @@ export default function Edit() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__container1">
 
-                    <div className="form__icon" style={{ backgroundColor: cloth.color }}>
+                    <div className="form__icon" style={{ backgroundColor: color ? color : cloth.color }}>
                         <img className="form__cloth" alt="cloth_icon" src={`${import.meta.env.VITE_BASEURL}/${cloth.icon}`}></img>
                     </div>
                     <div className="form__details">
@@ -105,7 +105,7 @@ export default function Edit() {
                             name="type"
                             id="type"
                             ref={typeRef}
-                            value={cloth.type}
+                            value={type ? type : cloth.type}
                             onChange={(e) => {
                                 setType(e.target.value);
                                 if (type) {
@@ -120,7 +120,7 @@ export default function Edit() {
                             name="category"
                             id="category"
                             ref={categoryRef}
-                            value={cloth.category}
+                            value={category ? category : cloth.category}
                             onChange={(e) => {
                                 setCategory(e.target.value);
                                 if (category) {
@@ -139,7 +139,7 @@ export default function Edit() {
                             name="dirty"
                             id="dirty"
                             type="checkbox"
-                            checked={cloth.dirty}
+                            checked={dirty ? dirty : cloth.dirty}
                             onChange={(e) => {
                                 setDirty(e.target.checked);
                             }}>
